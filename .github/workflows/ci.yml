@@ -27,11 +27,19 @@ jobs:
     - name: Build and Test with Maven (JUnit)
       run: mvn clean package
 
-    # 4. Build Docker Image (Only runs if JUnit tests pass successfully)
-    - name: Build Docker Image
-      run: |
-        docker build -t even-odd-pipeline:latest .
+    # 4. Log in to Docker Hub securely
+    - name: Log in to Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
 
-    # 5. Verify the container executes properly by passing an argument
-    - name: Verify Container Execution
-      run: docker run --rm even-odd-pipeline:latest 12
+    # 5. Build and Push the Docker Image directly to your account
+    - name: Build and Push Docker Image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: |
+          aishhwarya/even-odd-checker:latest
+          aishhwarya/even-odd-checker:${{ github.run_number }}
