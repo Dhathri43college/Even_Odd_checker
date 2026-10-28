@@ -48,4 +48,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: aishhwarya/even-odd-checker:latest # Fixed: Added comment marker here
+        tags: dhathri43college/even-odd-checker:latest # Fixed: Added comment marker here
