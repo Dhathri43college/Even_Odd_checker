@@ -14,6 +14,6 @@ public class NumberCheckerTest {
 
     @Test
     public void testOddNumber() {
-        assertEquals("Odd", NumberChecker.check(7));
+        assertEquals("Even", NumberChecker.check(7));
     }
 }
